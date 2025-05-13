@@ -10,7 +10,6 @@ abcd
 ==^
 abef
 
-
 The format of these four lines is:
 
 1) A line that indicates which line the first difference occurs on (Line XXX:) where "XXX" is the line number (starting from 0).
