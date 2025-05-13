@@ -6,11 +6,8 @@ This program finds differences in the contents of two files. In particular, it f
 It returns a formatted string that will allow a user to clearly see where the first difference between two files is located. It returns a four line string that looks as follows:
 
 Line 3:
-
 abcd
-
 ==^
-
 abef
 
 
