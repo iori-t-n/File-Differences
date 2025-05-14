@@ -18,10 +18,8 @@ def singleline_diff(line1, line2):
     """
 
     # First check the lengths of the two inputs and determine the length of the shorter line.
-    shorter_length = len(line1)
-    if len(line1) > len(line2):
-        shorter_length = len(line2)
-    
+    shorter_length = min(len(line1), len(line2))
+
     # Look for differences in the lines up to the last character in the shorter line.  
     index = 0
     for character in line1[0: shorter_length]:
@@ -58,10 +56,8 @@ def singleline_diff_format(line1, line2, idx):
 
       If idx is not a valid index, then returns an empty string.
     """
-    shorter_length = len(line1)
-    if len(line1) > len(line2):
-        shorter_length == len(line2)
-
+    shorter_length = min(len(line1), len(line2))
+    
     if (line1.find("\n") != -1) or (line1.find("\r") != -1) or (line2.find("\n") != -1) or (line2.find("\r") != -1):
         return ""
     elif (idx < 0) or (idx > shorter_length):
@@ -89,11 +85,9 @@ def multiline_diff(lines1, lines2):
 
       Returns (IDENTICAL, IDENTICAL) if the two lists are the same.
     """
-    # First check the lengths of the two lists and determine the length of the shorter lists.  
-    shorter_list = len(lines1)
-    if len(lines1) > len(lines2):
-        shorter_list = len(lines2)
-    
+    # First check the lengths of the two lists and determine the length of the shorter lists. 
+    shorter_list = min(len(lines1), len(lines2)) 
+        
     list_index = 0
     for line in lines1[0 : shorter_list]:
         diff_index = singleline_diff(line, lines2[list_index])
