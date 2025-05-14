@@ -124,21 +124,6 @@ def get_file_lines(filename):
       If the file does not exist or is not readable, then the
       behavior of this function is undefined.
     """
-    return []
-
-
-def get_file_lines(filename):
-    """
-    Inputs:
-      filename - name of file to read
-    Output:
-      Returns a list of lines from the file named filename.  Each
-      line will be a single line string with no newline ('\n') or
-      return ('\r') characters.
-
-      If the file does not exist or is not readable, then the
-      behavior of this function is undefined.
-    """
     with open(filename, "rt") as lines_file:
         lines = lines_file.read()
         lines_list = lines.split("\n")
@@ -148,3 +133,32 @@ def get_file_lines(filename):
 
 # # Simple test for get_file_lines(filename)
 # print(get_file_lines("file2.txt")) 
+
+
+def file_diff_format(filename1, filename2):
+    """
+    Inputs:
+      filename1 - name of first file
+      filename2 - name of second file
+    Output:
+      Returns a four line string showing the location of the first
+      difference between the two files named by the inputs.
+
+      If the files are identical, the function instead returns the
+      string "No differences\n".
+
+      If either file does not exist or is not readable, then the
+      behavior of this function is undefined.
+    """
+    lines1 = get_file_lines(filename1)
+    lines2 = get_file_lines(filename2)
+
+    (list_index, diff_index) = multiline_diff(lines1, lines2)
+
+    if (list_index, diff_index) == (IDENTICAL, IDENTICAL):
+        return "No differences\n"
+    else:
+        return "Line " + str(list_index) + "\n" + singleline_diff_format(lines1[list_index], lines2[list_index], diff_index)
+
+# # Simple test for file_diff_format(filename1, filename2)
+# print(file_diff_format("file2.txt", "file3.txt"))
