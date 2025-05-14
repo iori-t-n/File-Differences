@@ -37,6 +37,11 @@ def singleline_diff(line1, line2):
     else:
         return index
 
+# # Simple test for singleline_diff(line1, line2)                                 
+# string1 = "nowadays"
+# string2 = "nowaday"
+# print(singleline_diff(string1, string2))
+
 
 def singleline_diff_format(line1, line2, idx):
     """
@@ -64,6 +69,12 @@ def singleline_diff_format(line1, line2, idx):
     else:
         separator_line = "=" * idx + "^"
         return line1 + "\n" + separator_line + "\n" + line2 + "\n"
+
+# # Simple test for singleline_diff_format(line1, line2, idx)    
+# string1 = "nowaday"
+# string2 = "nopaday"
+# index = 0
+# print(singleline_diff_format(string1, string2, index))
 
 
 def multiline_diff(lines1, lines2):
@@ -95,6 +106,11 @@ def multiline_diff(lines1, lines2):
     else:
         return(shorter_list, 0)
 
+# # Simple test for multiline_diff(lines1, lines2)  
+# list1 = ["aaa", "bbb", "ccc"]
+# list2 = ["aaa", "bbb", "ccc"]
+# print(multiline_diff(list1, list2))
+
 
 def get_file_lines(filename):
     """
@@ -111,19 +127,24 @@ def get_file_lines(filename):
     return []
 
 
-def file_diff_format(filename1, filename2):
+def get_file_lines(filename):
     """
     Inputs:
-      filename1 - name of first file
-      filename2 - name of second file
+      filename - name of file to read
     Output:
-      Returns a four line string showing the location of the first
-      difference between the two files named by the inputs.
+      Returns a list of lines from the file named filename.  Each
+      line will be a single line string with no newline ('\n') or
+      return ('\r') characters.
 
-      If the files are identical, the function instead returns the
-      string "No differences\n".
-
-      If either file does not exist or is not readable, then the
+      If the file does not exist or is not readable, then the
       behavior of this function is undefined.
     """
-    return ""
+    with open(filename, "rt") as lines_file:
+        lines = lines_file.read()
+        lines_list = lines.split("\n")
+        lines_file.close()
+    
+    return lines_list
+
+# # Simple test for get_file_lines(filename)
+# print(get_file_lines("file2.txt")) 
