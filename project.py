@@ -126,6 +126,7 @@ def get_file_lines(filename):
     """
     with open(filename, "rt") as lines_file:
         lines = lines_file.read()
+        lines = lines.rstrip("\n")
         lines_list = lines.split("\n")
         lines_file.close()
     
@@ -158,7 +159,7 @@ def file_diff_format(filename1, filename2):
     if (list_index, diff_index) == (IDENTICAL, IDENTICAL):
         return "No differences\n"
     else:
-        return "Line " + str(list_index) + "\n" + singleline_diff_format(lines1[list_index], lines2[list_index], diff_index)
+        return "Line " + str(list_index) + ":" "\n" + singleline_diff_format(lines1[list_index], lines2[list_index], diff_index)
 
 # # Simple test for file_diff_format(filename1, filename2)
-# print(file_diff_format("file2.txt", "file3.txt"))
+print(file_diff_format("file9.txt", "file10.txt"))
