@@ -1,9 +1,6 @@
 """
 Project for Week 4 of "Python Data Representations".
 Find differences in file contents.
-
-Be sure to read the project description page for further information
-about the expected behavior of the program.
 """
 
 IDENTICAL = -1
@@ -20,20 +17,20 @@ def singleline_diff(line1, line2):
       Returns IDENTICAL if the two lines are the same.
     """
 
-    # You should first check the lengths of the two inputs and determine the length of the shorter line.
+    # First check the lengths of the two inputs and determine the length of the shorter line.
     shorter_length = len(line1)
     if len(line1) > len(line2):
         shorter_length == len(line2)
     
     # Look for differences in the lines up to the last character in the shorter line.  
-    # If you do not find any differences, think about what you should do in the two possible cases: 
-    # (1) the lines are the same length and (2) the lines are different lengths.
-  
     index = 0
     for character in line1[0: shorter_length + 1]:
         if character != line2[index]:
             return index
         index += 1
+
+    # There are the two possible cases when no differences are found above: 
+    # (1) the lines are the same length and (2) the lines are different lengths.
     
     if len(line1) == len(line2):
         return IDENTICAL
@@ -56,7 +53,17 @@ def singleline_diff_format(line1, line2, idx):
 
       If idx is not a valid index, then returns an empty string.
     """
-    return ""
+    shorter_length = len(line1)
+    if len(line1) > len(line2):
+        shorter_length == len(line2)
+
+    if (line1.find("\n") != -1) or (line1.find("\r") != -1) or (line2.find("\n") != -1) or (line2.find("\r") != -1):
+        return ""
+    elif (idx < 0) or (idx > shorter_length):
+        return ""
+    else:
+        separator_line = "=" * idx + "^"
+        return line1 + "\n" + separator_line + "\n" + line2 + "\n"
 
 
 def multiline_diff(lines1, lines2):
