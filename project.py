@@ -122,8 +122,7 @@ def get_file_lines(filename):
         lines = lines_file.read()
         lines = lines.rstrip("\n")
         lines_list = lines.split("\n")
-        lines_file.close()
-    
+            
     return lines_list
 
 # # Simple test for get_file_lines(filename)
